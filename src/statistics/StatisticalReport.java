@@ -26,22 +26,22 @@ public class StatisticalReport {
 
 		// Print y-axis values and histogram bars
 		for (long i = maxFrequency; i > 0; i--) {
-			System.out.printf("%" + maxLabelWidth + "s | ", i);
+			System.out.printf("%" + maxLabelWidth + "s |  ", i);
 			for (Map.Entry<Double, Long> entry : histogram.entrySet()) {
 				long frequency = entry.getValue();
 				if (frequency >= i) {
-					System.out.print("*  ");
+					System.out.print("*   ");
 				} else {
-					System.out.print("   ");
+					System.out.print("    ");
 				}
 			}
 			System.out.println();
 		}
 
 		// Print x-axis labels
-		System.out.print(String.format("%" + (maxLabelWidth + 3) + "s", ""));
+		System.out.print(String.format("%" + (maxLabelWidth + 3) + "s", " "));
 		for (double value : histogram.keySet()) {
-			System.out.print(String.format("%-" + (maxLabelWidth + 1) + "s", df.format(value)));
+			System.out.print(String.format("%-" + (maxLabelWidth + 2) + "s", df.format(value)+ "%"));
 		}
 		System.out.println();
 
@@ -57,7 +57,7 @@ public class StatisticalReport {
 		System.out.println("Standard Deviation: " + df.format(standardDeviation));
 		System.out.println("Median: " + df.format(median));
 		System.out.println("Maximum: " + df.format(maximum));
-		System.out.println("Mean of Outliers: " + df.format(meanOfOutliers));
+		System.out.println("Mean of Outliers: " + df.format(meanOfOutliers) + "\n");
 	}
 
 	// Calculate the mean
