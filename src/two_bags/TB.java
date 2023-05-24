@@ -1,4 +1,4 @@
-package TwoBags;
+package two_bags;
 
 import java.util.ArrayList;
 import java.util.List;

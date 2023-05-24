@@ -1,4 +1,4 @@
-package TwoBags;
+package two_bags;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import TwoBags.TB.Item;
+import two_bags.TB.Item;
 
 public class MainTB {
 
@@ -23,14 +23,14 @@ public class MainTB {
 	}
 
 	static double getR(double valDP, double valGA) {
-
-		return valDP == 0 ? 0 : ((valDP - valGA) / valDP) * 100;
+		DecimalFormat df = new DecimalFormat("#.##");
+		return valDP == 0 ? 0 : (Double.parseDouble(df.format((valDP - valGA) / valDP)) * 100);
 	}
 
 	public static void main(String[] args) {
 
 		try {
-			File file = new File("..\\UMT_Eljon_Zagradi\\src\\TwoBags\\TB.txt");
+			File file = new File("..\\UMT_Eljon_Zagradi\\src\\two_bags\\TB.txt");
 			PrintStream stream = new PrintStream(file);
 			System.setOut(stream);
 		} catch (FileNotFoundException e) {
@@ -73,7 +73,7 @@ public class MainTB {
 			long endGA_v = System.nanoTime();
 
 			// Sort items based on density ratio in descending order
-			items.sort((a, b) -> Double.compare((double) (a.value / a.size ), (double) (a.value / a.size )));
+			items.sort((a, b) -> Double.compare((double) (a.value / a.size), (double) (a.value / a.size)));
 			long startGA_d = System.nanoTime();
 			int valGA_d = TB.greedy_algorithm_computeMV(items, C0, C1);
 			long endGA_d = System.nanoTime();
@@ -93,8 +93,13 @@ public class MainTB {
 			results_d.add(result_d);
 
 			iteration++;
-			System.out.println("\n");
+			System.out.println();
 		}
+		System.out.println("Greedy Algorithm sorted by values: ");
+		statistics.StatisticalReport.createHistogram(results_v);
+		System.out.println("Greedy Algorithm sorted by densities: ");
+		statistics.StatisticalReport.createHistogram(results_d);
+
 
 	}
 

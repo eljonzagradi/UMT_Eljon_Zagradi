@@ -1,4 +1,4 @@
-package MaximumValueBag;
+package maximum_value_bag;
 
 import java.util.ArrayList;
 import java.util.List;

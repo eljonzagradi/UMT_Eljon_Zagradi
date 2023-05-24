@@ -1,4 +1,4 @@
-package MaximumSumOfMarks;
+package maximum_sum_of_marks;
 
 public class MSM {
 

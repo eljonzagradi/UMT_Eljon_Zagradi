@@ -1,4 +1,4 @@
-package MinimumCostPath;
+package minimum_cost_path;
 
 public class MCP {
 
@@ -31,38 +31,38 @@ public class MCP {
 	}
 
 	public static int greedy_algorithm_computeMCP(int[][] G) {
-	    int totalCost = G[0][0];
-	    int currentRow = 0;
-	    int currentCol = 0;
+		int totalCost = G[0][0];
+		int currentRow = 0;
+		int currentCol = 0;
 
-	    while (currentRow != G.length - 1 || currentCol != G[0].length - 1) {
-	        int costEast = Integer.MAX_VALUE;
-	        int costNortheast = Integer.MAX_VALUE;
-	        int costNorth = Integer.MAX_VALUE;
+		while (currentRow != G.length - 1 || currentCol != G[0].length - 1) {
+			int costEast = Integer.MAX_VALUE;
+			int costNortheast = Integer.MAX_VALUE;
+			int costNorth = Integer.MAX_VALUE;
 
-	        if (currentCol + 1 < G[0].length) {
-	            costEast = G[currentRow][currentCol + 1];
-	        }
-	        if (currentRow + 1 < G.length && currentCol + 1 < G[0].length) {
-	            costNortheast = G[currentRow + 1][currentCol + 1];
-	        }
-	        if (currentRow + 1 < G.length) {
-	            costNorth = G[currentRow + 1][currentCol];
-	        }
+			if (currentCol + 1 < G[0].length) {
+				costEast = G[currentRow][currentCol + 1];
+			}
+			if (currentRow + 1 < G.length && currentCol + 1 < G[0].length) {
+				costNortheast = G[currentRow + 1][currentCol + 1];
+			}
+			if (currentRow + 1 < G.length) {
+				costNorth = G[currentRow + 1][currentCol];
+			}
 
-	        if (costEast <= costNortheast && costEast <= costNorth) {
-	            currentCol += 1; // Move east
-	        } else if (costNortheast <= costEast && costNortheast <= costNorth) {
-	            currentRow += 1; // Move northeast
-	            currentCol += 1;
-	        } else {
-	            currentRow += 1; // Move north
-	        }
+			if (costEast <= costNortheast && costEast <= costNorth) {
+				currentCol += 1; // Move east
+			} else if (costNortheast <= costEast && costNortheast <= costNorth) {
+				currentRow += 1; // Move northeast
+				currentCol += 1;
+			} else {
+				currentRow += 1; // Move north
+			}
 
-	        totalCost += G[currentRow][currentCol];
-	    }
+			totalCost += G[currentRow][currentCol];
+		}
 
-	    return totalCost;
+		return totalCost;
 	}
 
 	static int minCost(int[][] M, int i, int j, int L, int C) {
