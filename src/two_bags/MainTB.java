@@ -37,7 +37,7 @@ public class MainTB {
 		ArrayList<Double> results_v = new ArrayList<>();
 		ArrayList<Double> results_d = new ArrayList<>();
 		DecimalFormat df = new DecimalFormat("#.##");
-		final int n = 50, maxSize = 27, maxValue = 34, C0 = 24, C1 = 31, MAX_ITERATIONS = 1000;
+		final int n = 50, maxSize = 27, maxValue = 34, C0 = 24, C1 = 31, MAX_ITERATIONS = 2000;
 		int iteration = 0;
 
 		while (iteration < MAX_ITERATIONS) {

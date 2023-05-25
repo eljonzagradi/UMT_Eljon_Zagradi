@@ -1,6 +1,8 @@
 package maximum_value_bag;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class MVB {
@@ -30,12 +32,20 @@ public class MVB {
 	}
 
 	static class Item {
-		int value;
-		int size;
+		private int value;
+		private int size;
 
-		Item(int value, int size) {
+		public Item(int value, int size) {
 			this.value = value;
 			this.size = size;
+		}
+
+		public int getValue() {
+			return value;
+		}
+
+		public int getSize() {
+			return size;
 		}
 	}
 
@@ -49,7 +59,7 @@ public class MVB {
 		}
 
 		// Sort items based on value ratio in descending order
-		items.sort((a, b) -> Double.compare((double) b.value, (double) a.value));
+		Collections.sort(items, Comparator.comparingInt(Item::getValue).reversed());
 
 		int totalValue = 0;
 		int currentCapacity = C;

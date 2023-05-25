@@ -44,7 +44,7 @@ public class MainMSM {
 
 		ArrayList<Double> results = new ArrayList<>();
 		DecimalFormat df = new DecimalFormat("#.##");
-		final int n = 10, H = 20, MAX_ITERATIONS = 1000;
+		final int n = 10, H = 20, MAX_ITERATIONS = 2000;
 		int iteration = 0;
 
 		while (iteration < MAX_ITERATIONS) {

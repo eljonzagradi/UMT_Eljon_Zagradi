@@ -37,7 +37,7 @@ public class MainMVB {
 		ArrayList<Double> results = new ArrayList<>();
 		DecimalFormat df = new DecimalFormat("#.##");
 		Random ran = new Random();
-		final int SIZE = 50, MAX_ITERATIONS = 1000;
+		final int SIZE = 50, MAX_ITERATIONS = 2000;
 		int iteration = 0;
 
 		while (iteration < MAX_ITERATIONS) {

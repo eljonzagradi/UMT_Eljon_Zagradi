@@ -44,7 +44,7 @@ public class MainMCP {
 
 		ArrayList<Double> results = new ArrayList<>();
 		DecimalFormat df = new DecimalFormat("#.##");
-		final int SIZE = 10, MAX_ITERATIONS = 1000;
+		final int SIZE = 10, MAX_ITERATIONS = 2000;
 		int iteration = 0;
 
 		while (iteration < MAX_ITERATIONS) {
@@ -75,7 +75,7 @@ public class MainMCP {
 			iteration++;
 			System.out.println();
 		}
-		
+
 		statistics.StatisticalReport.createHistogram(results);
 
 	}
