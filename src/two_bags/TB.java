@@ -1,6 +1,8 @@
 package two_bags;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class TB {
@@ -28,14 +30,37 @@ public class TB {
 		return y;
 	}
 
-	static int greedy_algorithm_computeMV(List<Item> all_items, int C0, int C1) {
+	static int greedy_algorithm_sorted_by_value_computeMV(int[] V, int[] S, int C0, int C1) {
+		List<Item> items = new ArrayList<>();
+		for (int i = 0; i < V.length; i++) {
+			items.add(new Item(V[i], S[i]));
+		}
 
+		// Sort items by value in descending order
+		Collections.sort(items, Comparator.comparingInt(Item::getValue).reversed());
+
+		return computeMV(items, C0, C1);
+	}
+
+	static int greedy_algorithm_sorted_by_density_computeMV(int[] V, int[] S, int C0, int C1) {
+		List<Item> items = new ArrayList<>();
+		for (int i = 0; i < V.length; i++) {
+			items.add(new Item(V[i], S[i]));
+		}
+
+		// Sort items by density (value/size) in descending order
+		Collections.sort(items, Comparator.comparingDouble(Item::getDensity).reversed());
+
+		return computeMV(items, C0, C1);
+	}
+
+	static int computeMV(List<Item> all_items, int C0, int C1) {
 		List<Item> remaining_items = new ArrayList<>();
 
 		int totalValue = 0;
 		int currentCapacity = C0;
 
-		// Greedy selection of items
+		// Greedy selection of items for C0
 		for (Item item : all_items) {
 			if (item.size <= currentCapacity) {
 				totalValue += item.value;
@@ -45,6 +70,9 @@ public class TB {
 			}
 		}
 
+		currentCapacity = C1; // Reset currentCapacity for C1
+
+		// Greedy selection of remaining items for C1
 		for (Item item : remaining_items) {
 			if (item.size <= currentCapacity) {
 				totalValue += item.value;
@@ -53,17 +81,27 @@ public class TB {
 		}
 
 		return totalValue;
-
 	}
 
 	static class Item {
-		int value;
-		int size;
+		private int value;
+		private int size;
 
-		Item(int value, int size) {
+		public Item(int value, int size) {
 			this.value = value;
 			this.size = size;
 		}
 
+		public int getValue() {
+			return value;
+		}
+
+		public int getSize() {
+			return size;
+		}
+
+		public double getDensity() {
+			return (double) value / size;
+		}
 	}
 }
