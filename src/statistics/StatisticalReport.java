@@ -26,7 +26,7 @@ public class StatisticalReport {
 
 		// Print y-axis values and histogram bars
 		for (long i = maxFrequency; i > 0; i--) {
-			System.out.printf("%" + maxLabelWidth + "s |  ", i);
+			System.out.printf("%03d|  ",i );
 			for (Map.Entry<Double, Long> entry : histogram.entrySet()) {
 				long frequency = entry.getValue();
 				if (frequency >= i) {
